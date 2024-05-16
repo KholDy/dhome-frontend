@@ -27,7 +27,11 @@
         },
 
         created() {
-            this.getData()
+            this.getData(),
+
+            setInterval(() => {
+                this.getData();
+            }, 600000)
         }
     }
 </script>
@@ -48,7 +52,7 @@
             <button class="btn btn-primary">change sensor</button>
         </div>
         <div class="card-footer text-muted">
-            turn on 2 minutes ago
+            {{ sensor.dateTime }}
         </div>
     </div>
 </template>

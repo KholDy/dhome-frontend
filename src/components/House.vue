@@ -23,6 +23,10 @@
         computed: {
             isRoomAvailable() {
                 return this.room && this.room.length;
+            },
+
+            getTitle() {
+                return this.title.toUpperCase()
             }
         },
 
@@ -34,7 +38,7 @@
 
 <template>
     <div class="container-md  text-center">
-        <h3>{{ title }}</h3>
+        <h3>{{ getTitle }}</h3>
         <div v-if="isRoomAvailable">
             <div v-for="r in room" class="border row p-2 m-4">
                 <Room :title="r.name"/>

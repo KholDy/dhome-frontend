@@ -102,7 +102,7 @@
 </script>
 
 <template>
-    <div class="m-2">
+    <div class="p-2">
         <h4>{{ title }}</h4>
         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#lightModal">
             add smart device
