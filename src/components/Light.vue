@@ -4,7 +4,8 @@
 
         data() {
             return {
-                light: null
+                light: null,
+                datetime: null
             }
         },
 
@@ -23,18 +24,21 @@
             async switchLight() {
                 await fetch('http://localhost:8080/light/switch/' + this.lightId);
                 this.getLight();
-                console.log(this.light)
-            }
+            },
         },
 
         computed: {
             isLightAvailable() {
                 return this.light;
-            }
+            },
         },
 
         created() {
             this.getLight()
+
+//            setInterval(() => {
+//                this.datetime = Math.abs(new Date() - Date.parse(this.light.date_time)) / 1000;
+//            }, 10000)
         }
     }
 
@@ -60,7 +64,7 @@
             <button type="button" class="btn btn-primary">change light</button>
         </div>
         <div class="card-footer text-muted">
-            turn on 2 minutes ago
+            {{ light.date_time }}
         </div>
     </div>
 </template>
