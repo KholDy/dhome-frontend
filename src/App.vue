@@ -1,42 +1,17 @@
 <script>
-  import MainHeader from './components/MainHeader.vue'
-  import House from './components/House.vue'
+  import { RouterView } from 'vue-router';
+  import MainHeader from '@/components/MainHeader.vue'
 
   export default {
-    components: {MainHeader, House},
-
-    data() {
-      return {
-        house: []
-      }
-    },
-
-    methods: {
-      getHouse() {
-        fetch('http://localhost:8080/house')
-          .then(response => response.json())
-            .then(data => this.house = data)
-      }
-    },
-
-    computed: {
-      isHouseAvailable() {
-        return this.house && this.house.length;
-      }
-    },
-
-    created() {
-      this.getHouse()
-    }
+    components: {MainHeader}
   }
 </script>
 
 <template>
   <MainHeader />
-  <div v-if="isHouseAvailable">
-    <House :title="house[0].name"/>
-  </div>
+
+  <RouterView />
 </template>
 
-<style scoped>
+<style>
 </style>

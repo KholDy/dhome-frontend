@@ -1,4 +1,6 @@
 <script>
+    import { getLightById } from '@/api/light';
+
     export default {
         name: 'Light',
 
@@ -14,17 +16,10 @@
         },
 
         methods: {
-            async getLight() {
-                await fetch('http://localhost:8080/light/' + this.lightId)
-                        .then(response => response.json())
-                            .then(data => this.light = data)
-                
-            },
-
             async switchLight() {
-                await fetch('http://localhost:8080/light/switch/' + this.lightId);
-                this.getLight();
-            },
+                fetch('http://localhost:8080/light/switch/' + this.lightId);
+                this.light = await getLightById(this.lightId);
+            }
         },
 
         computed: {
@@ -33,8 +28,8 @@
             },
         },
 
-        created() {
-            this.getLight()
+        async created() {
+            this.light = await getLightById(this.lightId)
 
 //            setInterval(() => {
 //                this.datetime = Math.abs(new Date() - Date.parse(this.light.date_time)) / 1000;
@@ -54,7 +49,7 @@
         </div>
         
         <div class="card-header">
-            {{ light.typeOfLight }}
+            {{ light.deviceName }}
         </div>
         <div class="card-body w-100 p-3">
             <p class="card-text">{{ light.description }}</p>

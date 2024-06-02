@@ -38,10 +38,12 @@
 
 <template>
     <div class="container-md  text-center">
-        <h3>{{ getTitle }}</h3>
+        <div class="m-2">
+            <h3>{{ getTitle }}</h3>
+        </div>
         <div v-if="isRoomAvailable">
             <div v-for="r in room" class="border row p-2 m-4">
-                <Room :title="r.name"/>
+                <Room :title="r.name" :roomId="r.id"/>
             </div>
         </div>
     </div>
